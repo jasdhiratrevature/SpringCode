@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+</head>
+<body>
+<h2>This is the index page...</h2>
+<h3>${message}</h3>
+<h3><%=new java.util.Date() %></h3>
+</body>
+</html>

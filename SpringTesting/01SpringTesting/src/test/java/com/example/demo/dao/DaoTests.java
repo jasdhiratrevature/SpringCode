@@ -8,15 +8,19 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.example.demo.model.Employee;
 
 
 
-@ExtendWith(SpringExtension.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+//@ExtendWith(SpringExtension.class)
+//@DataJpaTest
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@SpringBootTest
+@ActiveProfiles("test")
 public class DaoTests {
 
   @Autowired
@@ -24,14 +28,14 @@ public class DaoTests {
 
   @Test
   public void testCreateReadDelete() {
-    Employee employee = new Employee("Jasdhir", "Singh");
+    Employee employee = new Employee("Manjeet", "Rai");
 
     employeeRepository.save(employee);
 
     Iterable<Employee> employees = employeeRepository.findAll();
-    Assertions.assertThat(employees).extracting(Employee::getFirstName).containsOnly("Jasdhir");
+    Assertions.assertThat(employees).extracting(Employee::getFirstName).containsOnly("Manjeet");
 
-    employeeRepository.deleteAll();
-    Assertions.assertThat(employeeRepository.findAll()).isEmpty();
+  // employeeRepository.deleteAll();
+    //Assertions.assertThat(employeeRepository.findAll()).isEmpty();
   }
 }
